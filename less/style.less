@@ -1,0 +1,310 @@
+// variables
+@import url(//fonts.googleapis.com/css?family=Lato:300,300italic,700italic,700);
+@fontFamily: 'Lato', sans-serif;
+@fontWeight: 300;
+@fontWeightBold: 700;
+@fs: 1.8rem;
+@lh: 3.0rem;
+
+// basic colors
+@themeColor: #34495e;
+@highlightColor: #ffcc00;
+@highlightTextColor: @themeColor;
+@inputColor: darken(@themeColor, 5%);
+@inputTextColor: #ffffff;
+
+@errorColor: #cc1111;
+@svgColor: escape('@{themeColor}');
+
+// link colors
+@linkColor: @highlightColor;
+
+// input
+@inputHeight: 30px;
+@inputPadding: 10px;
+@inputFontSize: 20px;
+@inputFontWeight: @fontWeight;
+
+// mixins
+.box-sizing(@box-sizing) {
+    -moz-box-sizing: @box-sizing;
+    -webkit-box-sizing: @box-sizing;
+    box-sizing: @box-sizing;
+}
+
+.box-shadow(@properties) {
+    -webkit-box-shadow: @properties;
+    box-shadow: @properties;
+}
+
+.placeholder(@color, @opacity: .5) {
+    &:-ms-input-placeholder { color: @color; opacity: @opacity }
+    &::-moz-placeholder { color: @color; opacity: @opacity } /* Firefox 19+ */
+    &::-webkit-input-placeholder { color: @color; opacity: @opacity }
+}
+
+.selectable(@selectable) {
+    -webkit-touch-callout: @selectable;
+    -webkit-user-select: @selectable;
+    -khtml-user-select: @selectable;
+    -moz-user-select: @selectable;
+    -ms-user-select: @selectable;
+    user-select: @selectable;
+}
+
+.transform(@properties) {
+    -ms-transform: @properties;
+    -webkit-transform: @properties;
+    transform: @properties;
+}
+
+.transition(@properties) {
+    -webkit-transition: @properties;
+    transition: @properties;
+}
+
+// form
+fieldset {
+    .box-sizing(border-box);
+    border-color: @inputColor;
+    padding: 20px;
+    legend {
+        color: @highlightColor;
+        padding: 0 10px;
+        text-transform: uppercase;
+    }
+}
+
+.form {
+    .box-sizing(border-box);
+    .placeholder(@inputTextColor, 0.5);
+    //.transition(all 0.2s ease);
+    background: @inputColor;
+    border: none;
+    color: @inputTextColor;
+    font-family: @fontFamily;
+    font-size: @inputFontSize;
+    font-weight: @inputFontWeight;
+    height: (@inputHeight + @inputPadding * 2);
+    outline: none;
+    padding: @inputPadding (@inputPadding * 2);
+    width: 100%;
+    -webkit-appearance: none;
+}
+
+.btn {
+    .box-shadow(inset 0 0 0 1px darken(@highlightColor, 5%));
+    .box-sizing(border-box);
+    .transition(all .4s ease);
+    background: @highlightColor;
+    border:none;
+    color: @highlightTextColor;
+    cursor: pointer;
+    display: inline-block;
+    font-size: @inputFontSize;
+    line-height: (@inputHeight + @inputPadding * 2);
+    padding: 0 (@inputPadding * 2);
+    text-decoration: none;
+    &:hover {
+        .box-shadow(inset 0 0 0 1px @highlightColor);
+        background-color: lighten(@highlightColor, 10%);
+    }
+    &:active {
+        .box-shadow(inset 0 0 0 3px @highlightColor);
+        background-color: darken(@highlightColor, 10%);
+    }
+}
+
+select {
+    .box-shadow(inset 0 0 0 1px darken(@highlightColor, 5%));
+    .transition(all .4s ease);
+    background-color: @highlightColor;
+    background-image: url(~"data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20448%22%20enable-background%3D%22new%200%200%20256%20448%22%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E.arrow%7Bfill%3A@{svgColor}%3B%7D%3C%2Fstyle%3E%3Cpath%20class%3D%22arrow%22%20d%3D%22M255.9%20168c0-4.2-1.6-7.9-4.8-11.2-3.2-3.2-6.9-4.8-11.2-4.8H16c-4.2%200-7.9%201.6-11.2%204.8S0%20163.8%200%20168c0%204.4%201.6%208.2%204.8%2011.4l112%20112c3.1%203.1%206.8%204.6%2011.2%204.6%204.4%200%208.2-1.5%2011.4-4.6l112-112c3-3.2%204.5-7%204.5-11.4z%22%2F%3E%3C%2Fsvg%3E%0A");
+    background-position: right (@inputPadding * 2) center;
+    background-repeat: no-repeat;
+    background-size: auto 50%;
+    border:none;
+    border-radius: 0;
+    color: @highlightTextColor;
+    cursor: pointer;
+    font-size: @inputFontSize;
+    font-weight: @fontWeight;
+    height: (@inputHeight + @inputPadding * 2);
+    line-height: @inputHeight;
+    outline: none;
+    padding: @inputPadding (@inputPadding * 5) @inputPadding (@inputPadding * 1.5);
+    width: 100%;
+    &:hover {
+        .box-shadow(inset 0 0 0 1px @highlightColor);
+        background-color: lighten(@highlightColor, 10%);
+    }
+    // Cross Browser
+    &::-ms-expand { display: none }
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+// remove dotted border
+@-moz-document url-prefix() {
+    select {
+        color: rgba(0,0,0,0);
+        text-shadow: 0 0 0 @highlightTextColor;
+    }
+}
+
+textarea {
+    &:extend(.form);
+    height: (@inputHeight * 5);
+    max-width: 100%;
+    min-height: (@inputHeight * 5);
+    min-width: 100%;
+    padding: (@inputPadding * 2);
+    resize: none !important;
+    &:not([data-autosize-on="true"]) {
+        resize: vertical !important;
+    }
+}
+
+.inputLabel {
+    position: relative;
+    label {
+        .transition(min-width .4s ease ~"," color .4s ease ~"," font-size .3s);
+        box-sizing:border-box;
+        color: fade(@inputTextColor, 50%);
+        font-size: @inputFontSize;
+        font-weight: 300;
+        line-height: @inputHeight;
+        min-width: 100%;
+        padding: @inputPadding (@inputPadding * 2);
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    input, textarea {
+        &:focus, &[value]:not([value=""]) {
+            + label {
+                color: @highlightColor;
+                font-size: 75%;
+                min-width: 0;
+                text-transform: uppercase;
+                z-index: 2;
+            }
+            &:invalid + label {
+                color: @errorColor;
+                &:after {
+                    color: @errorColor;
+                }
+            }
+        }
+        &[required] {
+             + label {
+                &:after {
+                    content: "*";
+                    color: @highlightColor;
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+}
+
+input {
+    &:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]) {
+        &:extend(.form);
+        &:focus {
+            .box-shadow(inset 0 -3px 0 0 @highlightColor);
+            outline: none;
+            &:invalid {
+               .box-shadow(inset 0 -3px 0 0 @errorColor);
+                color: @errorColor;
+            }
+        }
+        &:invalid:not(:focus):not([required]) {
+            .box-shadow(inset 0 -3px 0 0 @errorColor);
+            .placeholder(@inputTextColor, 1);
+            border: 0;
+            color: @errorColor;
+            outline: none;
+        }
+        &[readonly] {
+            .selectable(none);
+            color: fade(@inputTextColor, 50%);
+            cursor: default;
+        }
+        &[required]:not(:focus) {
+            .box-shadow(none);
+        }
+    }
+    &[type="submit"], &[type="button"] {
+        .btn;
+        float: right;
+    }
+    &[type="checkbox"], &[type="radio"] {
+        float: left;
+        height: @inputHeight;
+        opacity: 0;
+        width: @inputHeight;
+        + label {
+          color: @inputTextColor;
+          display: block;
+          line-height: @inputHeight;
+          margin-bottom: (@inputHeight * 0.25);
+          padding-left: (@inputHeight + 10);
+          position: relative;
+          &:before {
+            background: @inputColor;
+            content: "";
+            display: block;
+            height: @inputHeight;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: @inputHeight;
+          }
+          &:after {
+            .transform(scale(0));
+            .transition(all 0.2s ease);
+            background: @highlightColor;
+            content: "";
+            display: block;
+            height: (@inputHeight * 0.7);
+            left: (@inputHeight * 0.15);
+            position: absolute;
+            top: (@inputHeight * 0.15);
+            width: (@inputHeight * 0.7);
+          }
+        }
+        &:checked + label {
+            &:after {
+                transform: scale(1);
+            }
+        }
+    }
+    &[type="radio"] {
+        + label {
+            &:before, &:after {
+                border-radius: 100%;
+            }
+        }
+    }
+}
+
+body {
+    background: @themeColor;
+    fieldset {
+        max-width: 400px;
+        margin: 50px auto;
+        section {
+            &:after {
+                clear: both;
+                content: "";
+                display: table;
+            }
+            &:not(:last-of-type) {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

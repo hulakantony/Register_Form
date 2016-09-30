@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Register Form</title>
+    
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+    
+  </head>
+
+  <body>
+
+    
+  <fieldset>
+    <legend>Legend</legend>
+
+    <section class="inputLabel">
+      <input type="text" onkeyup="this.setAttribute('value', this.value)">
+      <label>Text</label>
+    </section>
+    
+    <section class="inputLabel">
+      <input type="text" required onkeyup="this.setAttribute('value', this.value)">
+      <label>Required text</label>
+    </section>
+
+    <section class="inputLabel">
+      <input type="email" onkeyup="this.setAttribute('value', this.value)">
+      <label>Email</label>
+    </section>
+
+    <section class="inputLabel">
+      <input type="password" onkeyup="this.setAttribute('value', this.value)">
+      <label>Password</label>
+    </section>
+
+    <section>
+      <select>
+        <option>Select</option>
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </section>
+
+    <section>
+      <input type="radio" name="radio" id="r1" checked>
+      <label for="r1">Radio 1</label>
+      <input type="radio" name="radio" id="r2">
+      <label for="r2">Radio 2</label>
+    </section>
+
+    <section>
+      <input type="checkbox" id="cb1">
+      <label for="cb1">Checkbox 1</label>
+      <input type="checkbox" id="cb2" checked>
+      <label for="cb2">Checkbox 2</label>
+    </section>
+
+    <section class="inputLabel">
+      <textarea onkeyup="this.setAttribute('value', this.value)"></textarea>
+      <label>Textarea</label>
+    </section>
+
+    <section>
+      <input type="submit">
+    </section>
+
+  </fieldset>
+
+
+    
+        <script src="js/index.js"></script>
+
+    
+    
+  </body>
+</html>
